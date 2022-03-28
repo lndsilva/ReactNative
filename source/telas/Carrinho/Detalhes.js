@@ -1,22 +1,22 @@
 import React from 'react';
 import { Image, Text, StyleSheet, Dimensions, View } from 'react-native';
 
-import logoVendedor from '../../../assets/logo.png';
+import Texto from '../../components/Texto';
 
-export default function Detalhes (){
+export default function Detalhes ({titulo, tituloProduto, descricao, logoVendedor, nomeVendedor, preco}){
     return 
     <>
     
-    <Text style={styles.detalhes}>Detalhes  do Carrinho</Text>
-      <Text style={styles.titulo}>Kit IoT</Text>
+    <Texto style={styles.detalhes}>{titulo}</Texto>
+      <Texto style={styles.titulo}>{tituloProduto}</Texto>
 
       <View style={styles.vendedor}>
       <Image style={styles.logoVendedor} source={logoVendedor}/>
-      <Text style={styles.nomeVendedor}>Nuvem Cloud Shopping</Text>
+      <Texto style={styles.nomeVendedor}>{nomeVendedor}</Texto>
       </View>
       
-      <Text style={styles.desc}>Kit IoT que revoluciona a vida dos estudates</Text>
-      <Text style={styles.preco}>R$ 99,00</Text> 
+      <Texto style={styles.desc}>{descricao}</Texto>
+      <Texto style={styles.preco}>{preco}</Texto> 
     
     </>
     ;
@@ -61,5 +61,4 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 10
       }
-
 });

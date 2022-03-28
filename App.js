@@ -12,6 +12,7 @@ import Topo from './source/telas/Carrinho/Topo';
 import Detalhes from './source/telas/Carrinho/Detalhes';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
+import Mocks from './source/mocks/carrinho';
 
 
 export default function App() {
@@ -28,9 +29,9 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <Topo/>
+      <Topo {...Mocks.topo}/>
 
-      <Detalhes/>
+      <Detalhes {...Mocks.detalhes}/>
 
       <StatusBar />
     </SafeAreaView>
