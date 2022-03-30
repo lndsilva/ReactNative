@@ -5,7 +5,9 @@ import {
   Text, 
   Image,
   Dimensions,
-  View
+  View,
+  ScrollView,
+  FlatList
 } from 'react-native';
 
 import Topo from './source/telas/Carrinho/Topo';
@@ -13,7 +15,9 @@ import Detalhes from './source/telas/Carrinho/Detalhes';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 import Mocks from './source/mocks/carrinho';
-import Itens from './source/telas/Carrinho/itens';
+import Item from './source/telas/Carrinho/Item';
+import Texto from './source/components/Texto';
+
 
 
 export default function App() {
@@ -30,13 +34,38 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <Topo {...Mocks.topo}/>
-
-      <Detalhes {...Mocks.detalhes}/>
-
-      <Itens {...Mocks.itens} />
+      <FlatList
+        data={Mocks.itens.lista}
+        renderItem={Item}
+        keyExtractor={({nome})=>nome}
+        ListHeaderComponentStyle={
+          ()=>{
+            return <>
+              <Topo {...Mocks.topo}/>
+              <Detalhes {...Mocks.detalhes}/>
+              <Texto style={styles.titulo}>
+                {Mocks.itens.titulo}
+              </Texto>      
+            
+            </>
+          }
+        }
+        ListFooterComponent={
+          () =>{
+            return <>
+            <FlatList
+              data={Mocks.itens.novaLista}
+              renderItem={Item}
+              keyExtractor={({nome})=>nome}           
+            />
+          
+            </>
+          }
+        }
+      />
 
       <StatusBar />
+
     </SafeAreaView>
   );
 }
@@ -45,5 +74,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
-  }
+  },
+  titulo: {
+    color:"#ffa500",
+    fontWeigth: 'bold',
+    marginTop: 30,
+    marginBottom: 30,
+    fontSize: 25
+}
 });
